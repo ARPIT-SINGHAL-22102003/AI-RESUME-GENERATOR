@@ -7,11 +7,13 @@ import { useUser } from '@clerk/clerk-react'
 function App() {
   const [count, setCount] = useState(0)
 
-  const {user, is, isSignedIn} = useUser();
+  const {user, isLoaded, isSignedIn} = useUser();
 
-  if(!isSignedIn && isLoaded) {
+  if(!isSignedIn&&isLoaded){ 
+  {
     return <Navigate to={'/auth/signin'}/>
   }
+}
 
   return (
     <>
