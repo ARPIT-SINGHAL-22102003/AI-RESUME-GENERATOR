@@ -1,10 +1,17 @@
 import { useState } from 'react'
 import { Button } from './components/ui/button'
 import './App.css'
-import { Outlet } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
+import { useUser } from '@clerk/clerk-react'
 
 function App() {
   const [count, setCount] = useState(0)
+
+  const {user, is, isSignedIn} = useUser();
+
+  if(!isSignedIn && isLoaded) {
+    return <Navigate to={'/auth/signin'}/>
+  }
 
   return (
     <>
